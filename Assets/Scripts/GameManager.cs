@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject Arm;
     public GameObject Joint;
     public GameObject Lifter;
+    public GameObject Object;
     private float baseRadius;
     private GameObject[] Arm1;
     private GameObject[] Arm2;
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
     public Transform TargetPos2;
     private Vector3 lastTarget1Pos;
     private Vector3 lastTarget2Pos;
+    private bool manualMode = false;
+    public TextMeshProUGUI manualModeText;
 
     // Start is called before the first frame update
     void Start()
@@ -294,6 +298,16 @@ public class GameManager : MonoBehaviour
                 
             }
 
+        }
+    }
+
+    public void ToggleManualMode(){
+        manualMode = !manualMode;
+        if(manualMode){
+            manualModeText.text = "Manual Mode : ON";
+        }
+        else{
+            manualModeText.text = "Manual Mode : OFF";
         }
     }
 }
