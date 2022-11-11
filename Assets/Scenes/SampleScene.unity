@@ -520,7 +520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Manual Mode : OFF'
+  m_text: 'Manual Mode : ON'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1771,7 +1771,7 @@ GameObject:
   - component: {fileID: 1675712812}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1863,7 +1863,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675712806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35.6, y: 10, z: 0}
+  m_LocalPosition: {x: 35.6, y: 4.3, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1882,6 +1882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a39e97a8f2fb804c9113f1d64ad69f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 2051542520}
 --- !u!1 &1882085067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2173,10 +2174,14 @@ MonoBehaviour:
   Arm: {fileID: 121899065970102538, guid: 080476f41e8f0944f88d13ff3b6c9bdc, type: 3}
   Joint: {fileID: 931247516775607444, guid: cef19227a2557b044b5785e4c67dc603, type: 3}
   Lifter: {fileID: 5580656787732604666, guid: ef7c8cb1f902369458ae751f3bad4b8f, type: 3}
+  Lifter1: {fileID: 0}
+  Lifter2: {fileID: 0}
   Object: {fileID: 1675712806}
   numArms: 5
+  armSpeed: 0.08
   TargetPos1: {fileID: 577695576}
   TargetPos2: {fileID: 947438795}
+  manualMode: 1
   manualModeText: {fileID: 303072276}
 --- !u!4 &2051542521
 Transform:

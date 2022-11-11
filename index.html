@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="business">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css"
+            rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="main.css">
+        <title>CSCI 5611</title>
+    </head>
+    <body>
+        <div class="flex justify-center items-center flex-col py-10 w-[100%]">
+            <h1 class="text-5xl">CSCI 5611 - Project 3</h1>
+            <h2 class="text-3xl pt-[1em]">IK Arm</h2>
+        </div>
+        <div class="hero h-[30] bg-base-200">
+            <div class="flex hero-content flex-col text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold">Authors</h1>
+                    <ul class="py-6">
+                        <li>
+                            Madhava Raveendra
+                        </li>
+                    </ul>
+                </div>
+                <div class="max-w-[90%]">
+                    <h1 class="text-5xl font-bold">Description</h1>
+                    <p class="py-6">
+                        This project includes a robot arm generated in Untiy
+                        with Forward and Inverse Kinematics implemented. The use
+                        will be able to interact with the Arms to view the
+                        motion of the Arms based on their Inverse Kinematics
+                        Implementation.
+                    </p>
+                </div>
+                <div class="max-w-[90%]">
+                    <h1 class="text-5xl font-bold">Features</h1>
+                    <ul class="py-6">
+                        <li>Dual Robot Arms with Forward Kinematics - Default</li>
+                        <li>Inverse Kinematics using FABRIK</li>
+                        <li>User can move the camera freely around the scene</li>
+                        <li>Manual and automatic Mode</li>
+                        <li>User can allow the arm to interact with an Objec in
+                            scene</li>
+                    </ul>
+                </div>
+                <div class="max-w-[90%]">
+                    <h1 class="text-5xl font-bold">Code</h1>
+                    <p class="py-6">
+                        I am using Unity3D Game Engine for the implementation of
+                        this project. Using spheres as Joints and Cubes as the
+                        arm segments, I am constructing a bi-joint robot arm by
+                        joining them using basic transformations and forward
+                        kinematics. Using Unity's Collider System, we are
+                        implementing collisions on the lifters of the arms
+                        towards the object in the scene. The user is allowed to
+                        interact with the motion of the arms using Targets
+                        represented by small spheres in Manual Mode of the
+                        scene. The arms have inverse kinematics implemented
+                        using the FABRIK algorithm. You can switch from manual
+                        to automatic mode using the button given in the game. At
+                        first switch to automatic, one of the arms navigates to
+                        the object and picks it up. The user can move the arms
+                        to see its interaction with the arms and click on the
+                        object to drop it in Manual Mode.
+                    </p>
+                </div>
+                <button class="btn btn-primary
+                    w-[60%]"
+                    onclick="window.open('https://github.umn.edu/ravee006/CSCI-5611-Project-3');">Go
+                    To
+                    Source
+                    Code</button>
+                <div class="max-w-[90%]">
+                    <h1 class="text-5xl font-bold">Execution</h1>
+                    <p class="py-6">
+                        Use the button above to navigate to the source code.
+                        Find the 'Project Build' folder and run the executable
+                        inside.<br><br>
+                        <b>
+                            Controls :
+                        </b>
+                        <br>
+                        ASWD/Arrow Keys : Move Around <br />
+                        q/e : Camera Up/Down <br />
+                        z/x : Camera Look-Left/Look-Right <br />
+                        Right-Click : Select Targets and Obstacle to Move <br />
+                        SPACE : Quit Application <br />
+                    </p>
+                </div>
+                <div class="max-w-[90%]">
+                    <h1 class="text-5xl
+                        font-bold">Difficulties</h1>
+                    <p class="py-6">
+                        One of the main difficulties of the project was the
+                        implementation of Inverse Kinematics using FABRIK
+                        algorithm which included manually adjusting the rotation
+                        and positions of the child components of each segment of
+                        the arm (Arm segment and Joint).
+                    </p>
+                </div>
+                <div class="max-w-[90%]">
+                    <h1 class="text-5xl
+                        font-bold">Gallery</h1>
+                    <video class="my-10"
+                        width="600"
+                        height="520" controls>
+                        <source
+                            src="./PublicAssets/IK_Arm.mp4"
+                            type="video/mp4">
+                        Your browser does not
+                        support the video tag.
+                    </video>
+                    <img src="./PublicAssets/IK_Arm_Img.png"
+                        alt="IK Arm"
+                        width="600"
+                        height="520"/>
+                </div>
+                <div class="max-w-[90%]">
+                    <h1 class="text-5xl
+                        font-bold">References/Links</h1>
+                    <ul class="py-6">
+                        <li>
+
+                            World Materials Asset:
+                            <a
+                                href="https://assetstore.unity.com/packages/2d/textures-materials/world-materials-free-150182">
+                                https://assetstore.unity.com/packages/2d/textures-materials/world-materials-free-150182
+                            </a>
+                        </li>
+                        <li>
+                            Skybox Series Asset:
+                            <a
+                                href="https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633">
+                                https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

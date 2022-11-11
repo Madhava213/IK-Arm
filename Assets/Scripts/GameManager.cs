@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject Arm;
     public GameObject Joint;
     public GameObject Lifter;
+    public GameObject Lifter1;
+    public GameObject Lifter2;
     public GameObject Object;
     private float baseRadius;
     private GameObject[] Arm1;
@@ -20,12 +22,13 @@ public class GameManager : MonoBehaviour
     public int numArms = 5;
     private int numJoints;
     private float armLength = 0;
+    public float armSpeed = 0.05f;
 
     public Transform TargetPos1;
     public Transform TargetPos2;
     private Vector3 lastTarget1Pos;
     private Vector3 lastTarget2Pos;
-    private bool manualMode = false;
+    public bool manualMode = true;
     public TextMeshProUGUI manualModeText;
 
     // Start is called before the first frame update
@@ -58,6 +61,10 @@ public class GameManager : MonoBehaviour
         }
         SpawnArm1();
         SpawnArm2();
+
+        // Target Initial States
+        TargetPos1.position += new Vector3(25,0,0);
+        TargetPos2.position += new Vector3(-25,0,0);
     }
 
     void SpawnArm1(){
@@ -94,8 +101,10 @@ public class GameManager : MonoBehaviour
 
             // Create Lifter
             if (i == numArms - 1) { 
-                GameObject newLifter = Instantiate(Lifter, new Vector3(0, 0 + ((i+1) * (armLength)), 0), Quaternion.identity);
-                newLifter.transform.SetParent(emptyObj.transform);
+                Lifter1 = Instantiate(Lifter, new Vector3(0, 0 + ((i+1) * (armLength)), 0), Quaternion.identity);
+                Lifter1.transform.SetParent(emptyObj.transform);
+                Lifter lifterScript = Lifter1.AddComponent<Lifter>() as Lifter;
+                emptyObj.tag = "Arm1";
             }
         }
     }
@@ -145,8 +154,10 @@ public class GameManager : MonoBehaviour
 
             // Create Lifter
             if (i == numArms - 1) { 
-                GameObject newLifter = Instantiate(Lifter, new Vector3(0, 0 + ((i+1) * (armLength)), 0), Quaternion.identity);
-                newLifter.transform.SetParent(emptyObj.transform);
+                Lifter2 = Instantiate(Lifter, new Vector3(0, 0 + ((i+1) * (armLength)), 0), Quaternion.identity);
+                Lifter2.transform.SetParent(emptyObj.transform);
+                Lifter lifterScript = Lifter2.AddComponent<Lifter>() as Lifter;
+                emptyObj.tag = "Arm2";
             }
         }
     }
@@ -155,23 +166,39 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //////////////////////////////////////
-        // DEBUGGING CODE
-
-        // float x = Input.GetAxis("Horizontal");
-        // float z = Input.GetAxis("Vertical");
-        // float speed = 20;
-        // Groups1[2].transform.position += new Vector3(x * speed * Time.deltaTime,0,z * speed * Time.deltaTime);
-        //////////////////////////////////////
-
-        if(!TargetPos1.position.Equals(lastTarget1Pos)){
+        // Perform IK
+        if (!TargetPos1.position.Equals(lastTarget1Pos))
+        {
             Group1FabrikIK();
         }
-        if(!TargetPos2.position.Equals(lastTarget2Pos)){
+        if (!TargetPos2.position.Equals(lastTarget2Pos))
+        {
             Group2FabrikIK();
         }
         lastTarget1Pos = TargetPos1.position;
         lastTarget2Pos = TargetPos2.position;
+
+        if (!manualMode)
+        {
+            // Detect Collision for Lifter
+            if (Lifter1.GetComponent<Lifter>().inContact)
+            {
+                Object.transform.SetParent(Groups1[Groups1.Length - 1].transform);
+            }
+            else if (Lifter2.GetComponent<Lifter>().inContact)
+            {
+                Object.transform.SetParent(Groups2[Groups2.Length - 1].transform);
+            }
+            else
+            {
+                // Move Arms to Target
+                TargetPos1.position = Vector3.MoveTowards(TargetPos1.position, Object.transform.position + new Vector3(0, (Object.transform.localScale.y / 2), 0), armSpeed);
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space)){
+            Application.Quit();
+        }
     }
 
     void Group1FabrikIK(){
@@ -305,9 +332,17 @@ public class GameManager : MonoBehaviour
         manualMode = !manualMode;
         if(manualMode){
             manualModeText.text = "Manual Mode : ON";
+            TargetPos1.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            TargetPos1.gameObject.GetComponent<SphereCollider>().enabled = true;
+            TargetPos2.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            TargetPos2.gameObject.GetComponent<SphereCollider>().enabled = true;
         }
         else{
             manualModeText.text = "Manual Mode : OFF";
+            TargetPos1.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            TargetPos1.gameObject.GetComponent<SphereCollider>().enabled = false;
+            TargetPos2.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            TargetPos2.gameObject.GetComponent<SphereCollider>().enabled = false;
         }
     }
 }
