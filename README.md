@@ -38,7 +38,13 @@ One of the main difficulties of the project was the implementation of Inverse Ki
 
 ## Video
 
+
+https://media.github.umn.edu/user/17151/files/af5c9900-03b9-4681-929c-152cb81dfbf1
+
+
 ## Images
+
+![IK_Arm_Img](https://media.github.umn.edu/user/17151/files/0c3fdb32-96d4-4acd-bbfb-b27fbd2dead8)
 
 ## References/Links
 
